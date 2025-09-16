@@ -8,10 +8,13 @@ from imblearn.over_sampling import RandomOverSampler
 from imblearn.pipeline import Pipeline as ImbPipeline
 import seaborn as sns
 import matplotlib.pyplot as plt
+import joblib
 
 PROC_PATH = Path("data/processed/reviews_clean.csv")
 CHART_DIR = Path("outputs/charts")
+MODEL_DIR = Path("models")
 CHART_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 def main():
     df = pd.read_csv(PROC_PATH)
@@ -55,6 +58,10 @@ def main():
     plt.savefig(out_path)
     plt.close()
     print(f"Saved confusion matrix -> {out_path}")
+
+    model_path = MODEL_DIR / "tfidf_svm_oversampled.joblib"
+    joblib.dump(pipe, model_path)
+    print(f"Saved model -> {model_path}")
 
 if __name__ == "__main__":
     main()
