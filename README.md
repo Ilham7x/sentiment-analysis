@@ -54,6 +54,7 @@ Additional artifacts:
 
 ## Repository Structure
 
+```text
 .
 ├── src/
 │   ├── train_baseline.py
