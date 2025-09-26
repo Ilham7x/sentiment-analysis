@@ -54,7 +54,7 @@ Additional artifacts:
 
 ## Repository Structure
 
-```text
+```
 .
 ├── src/
 │   ├── train_baseline.py
@@ -76,7 +76,7 @@ Additional artifacts:
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
+```
 
 ## Notes & Design Choices
 
