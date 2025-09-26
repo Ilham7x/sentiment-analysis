@@ -55,22 +55,26 @@ Additional artifacts:
 ## Repository Structure
 .
 ├── src/
-│ ├── train_baseline.py # TF-IDF + Logistic Regression
-│ ├── train_svm_hybrid.py # TF-IDF + LinearSVC + hybrid resampling (chosen)
-│ ├── train_svm.py # other SVM variants (oversample/undersample)
-│ ├── score_reviews.py # export predictions.csv with metadata
-│ └── utils_text.py # text cleaning helpers
+│   ├── train_baseline.py
+│   ├── train_svm.py
+│   ├── train_svm_undersample.py
+│   ├── train_svm_resample.py
+│   ├── train_svm_hybrid.py            # chosen model
+│   ├── score_reviews.py               # exports outputs/predictions.csv
+│   ├── utils_text.py
+│   └── infer.py
 ├── data/
-│ ├── raw/ # raw Kaggle CSVs (ignored)
-│ └── processed/ # reviews_clean.csv (ignored)
-├── models/ # saved models (.joblib, ignored)
+│   ├── raw/                           # (ignored) original Kaggle CSV
+│   └── processed/                     # (ignored) e.g., reviews_clean.csv
+├── models/                            # (ignored) saved .joblib models
 ├── outputs/
-│ ├── predictions.csv # review-level predictions (
-│ ├── comparison.csv # model metrics summary 
-│ └── charts/ # confusion matrices, etc.
+│   ├── predictions.csv                # review-level predictions for BI
+│   ├── comparison.csv                 # model metrics summary
+│   └── charts/                        # confusion matrices, etc.
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
 
 ## Notes & Design Choices
 
