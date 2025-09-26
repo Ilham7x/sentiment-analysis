@@ -122,12 +122,12 @@ python src/score_reviews.py
 
 ## Notes & Design Choices
 
-Why SVM + TF-IDF? Strong baseline for short reviews; stable and fast.
+- **Why SVM + TF-IDF?** Strong baseline for short reviews; stable and fast.
 
-Why hybrid sampling? Balances class skew; improved macro-F1 vs plain/oversample.
+- **Why hybrid resampling?** Balances class skew; improved macro-F1 vs plain/oversample.
 
-Reproducibility: Fixed random seeds; clean train/test split; pipeline saved as .joblib.
+- **Reproducibility.** Fixed random seeds; clean train/test split; pipeline saved as .joblib.
 
-Limitations / Next steps: Neutral class remains challenging; consider calibrated SVM, class-weighted loss, or modern pretrained embeddings (e.g., BERT) for further gains.
+- **Limitations / Next steps.** Neutral class remains challenging; consider calibrated SVM, class-weighted loss, or modern pretrained embeddings (e.g., BERT) for further gains.
 
 
