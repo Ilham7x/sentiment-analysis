@@ -79,7 +79,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### How to Run
+## How to Run
 ```bash
 # Train (SVM Hybrid)
 python src/train_svm_hybrid.py
