@@ -80,14 +80,15 @@ pip install -r requirements.txt
 ```
 
 ## How to Run
-**Train the chosen model (SVM Hybrid)**
+# Train the chosen model (SVM Hybrid)
 python src/train_svm_hybrid.py
--> models/tfidf_svm_hybrid.joblib
--> outputs/charts/confusion_matrix_svm_hybrid.png
+# -> models/tfidf_svm_hybrid.joblib
+# -> outputs/charts/confusion_matrix_svm_hybrid.png
 
-**Export predictions for analysis / BI**
+# Export predictions for analysis / BI
 python src/score_reviews.py
--> outputs/predictions.csv
+# -> outputs/predictions.csv
+
 
 ## Repository Structure
 
