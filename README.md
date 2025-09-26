@@ -79,15 +79,19 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## How to Run
-# Train the chosen model (SVM Hybrid)
+### How to Run
+```bash
+# Train (SVM Hybrid)
 python src/train_svm_hybrid.py
-# -> models/tfidf_svm_hybrid.joblib
-# -> outputs/charts/confusion_matrix_svm_hybrid.png
+# outputs:
+#   models/tfidf_svm_hybrid.joblib
+#   outputs/charts/confusion_matrix_svm_hybrid.png
 
 # Export predictions for analysis / BI
 python src/score_reviews.py
-# -> outputs/predictions.csv
+# outputs:
+#   outputs/predictions.csv
+```
 
 
 ## Repository Structure
