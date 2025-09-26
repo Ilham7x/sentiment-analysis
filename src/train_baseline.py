@@ -24,10 +24,6 @@ OUT_DIR.mkdir(exist_ok=True, parents=True)
 CHART_DIR.mkdir(exist_ok=True, parents=True)
 
 def load_dataset() -> pd.DataFrame:
-    """
-    Try to load a CSV from data/raw. If not present, build a tiny sample
-    so the pipeline is runnable.
-    """
     if RAW_PATH.exists():
         df = pd.read_csv(RAW_PATH)
         print(f"Loaded dataset with shape: {df.shape}")
