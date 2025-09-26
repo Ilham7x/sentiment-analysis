@@ -15,9 +15,9 @@
 
 1. **Load & Preprocess**
    - Tokenize → remove punctuation & stopwords → lowercase → lemmatize
-   - Output: `data/processed/reviews_clean.csv` with columns:
-     - `text` *(title + ". " + review body — used for matching back to raw)*  
-     - `label` *(gold sentiment for training)*  
+   - Training file: `data/processed/reviews_clean.csv` with columns:
+     - `text` *(title + ". " + review body — used for matching back to raw)* 
+     - `label` ∈ {positive, neutral, negative}  
      - `text_clean` *(cleaned string used by models)*
 
 2. **Feature Extraction**
@@ -28,12 +28,13 @@
    - Logistic Regression (baseline)
    - Linear SVM
    - Linear SVM + **RandomOverSampler**
-   - Linear SVM **Hybrid** (undersample majority + oversample minority) ✅
+   - **Linear SVM (Hybrid resampling)** — *chosen model*
    - BiLSTM (embeddings)
 
 4. **Evaluation**
+   - Stratified 80/20 split, untouched test set
    - Metrics: **Accuracy**, **Macro Precision/Recall/F1**
-   - Confusion matrix on untouched test split
+   - Confusion matrix saved to `outputs/charts/`
    - Results summary (`outputs/comparison.csv`):
 
      | Model            | Accuracy | Macro_Precision | Macro_Recall | Macro_F1 | Notes                          |
@@ -51,6 +52,42 @@ Additional artifacts:
    - Predictions exported to `outputs/predictions.csv` for BI visualization.
 
 ---
+
+## Inputs & Outputs
+
+**Inputs expected**
+- `data/processed/reviews_clean.csv` → columns: `text, label, text_clean`  
+  *(`text` must be `reviews.title + ". " + reviews.text` so metadata can be re-attached)*
+- `data/raw/amazon_reviews.csv` → raw metadata (dates, ASIN, brand, rating, title, text)
+
+**Key outputs**
+- `models/tfidf_svm_hybrid.joblib` — trained TF-IDF + LinearSVC pipeline  
+- `outputs/predictions.csv` — review-level predictions + metadata (for BI)  
+- `outputs/comparison.csv` — model metrics table  
+- `outputs/charts/*.png` — evaluation plots (e.g., confusion matrix)
+
+---
+
+## Quickstart
+
+```bash
+# create & activate venv (Windows)
+python -m venv .venv
+.venv\Scripts\activate
+
+# install dependencies
+pip install -r requirements.txt
+```
+
+## How to Run
+**Train the chosen model (SVM Hybrid)**
+python src/train_svm_hybrid.py
+# -> models/tfidf_svm_hybrid.joblib
+# -> outputs/charts/confusion_matrix_svm_hybrid.png
+
+**Export predictions for analysis / BI**
+python src/score_reviews.py
+# -> outputs/predictions.csv
 
 ## Repository Structure
 
@@ -85,3 +122,7 @@ Why SVM + TF-IDF? Strong baseline for short reviews; stable and fast.
 Why hybrid sampling? Balances class skew; improved macro-F1 vs plain/oversample.
 
 Reproducibility: Fixed random seeds; clean train/test split; pipeline saved as .joblib.
+
+Limitations / Next steps: Neutral class remains challenging; consider calibrated SVM, class-weighted loss, or modern pretrained embeddings (e.g., BERT) for further gains.
+
+
