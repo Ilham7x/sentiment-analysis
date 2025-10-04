@@ -48,8 +48,8 @@
 
 
 
-     | Model            | Accuracy | Notes                          |
-     |------------------|---------:|----------------:|-------------:|---------:|--------------------------------|
+     | Model            | Accuracy | Notes                
+     |------------------|---------:|----------------:|
      | Logistic Regression | 0.672 | Baseline TF-IDF + LogReg |
      | SVM              | 0.923 | Linear SVM |
      | SVM Oversampled  | 0.926 | RandomOverSampler |
